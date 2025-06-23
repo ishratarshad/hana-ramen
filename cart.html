@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Cart | Hana Ramen</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Poppins&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <a href="#main-content" class="skip-link">Skip to Main Content</a>
+
+  <header>
+    <div class="logo">🍜 Hana Ramen</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="cart.html" class="cart-link">🛒 Cart (<span id="cart-count">0</span>)</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content" class="cart-page">
+    <h1>Your Cart</h1>
+    <ul id="cart-items"></ul>
+    <p><strong>Total:</strong> $<span id="cart-total">0.00</span></p>
+    <button id="clear-cart">Clear Cart</button>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="social-links">
+        <a href="https://www.instagram.com/" target="_blank" aria-label="Instagram">Instagram</a> |
+        <a href="https://www.facebook.com/" target="_blank" aria-label="Facebook">Facebook</a> |
+        <a href="https://twitter.com/" target="_blank" aria-label="Twitter">Twitter</a>
+      </div>
+      <div class="business-hours">
+        <p><strong>Business Hours:</strong></p>
+        <p>Mon–Fri: 12:00 PM – 10:00 PM</p>
+        <p>Sat–Sun: 1:00 PM – 11:00 PM</p>
+      </div>
+      <p>© 2025 Hana Ramen</p>
+    </div>
+  </footer>
+
+  <script>
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    function updateCartDisplay() {
+      const cartItemsEl = document.getElementById("cart-items");
+      const cartTotalEl = document.getElementById("cart-total");
+      const cartCountEl = document.getElementById("cart-count");
+
+      let total = 0;
+      let count = 0;
+      cartItemsEl.innerHTML = "";
+
+      if (cart.length === 0) {
+        cartItemsEl.innerHTML = `<li>Your cart is empty.</li>`;
+      }
+
+      cart.forEach((item, index) => {
+        total += item.price * item.quantity;
+        count += item.quantity;
+
+        const li = document.createElement("li");
+        li.innerHTML = `
+          <span>${item.name} x${item.quantity} — $${(item.price * item.quantity).toFixed(2)}</span>
+          <button onclick="removeFromCart(${index})">Remove</button>
+        `;
+        cartItemsEl.appendChild(li);
+      });
+
+      cartTotalEl.textContent = total.toFixed(2);
+      cartCountEl.textContent = count;
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCartDisplay();
+    }
+
+    function clearCart() {
+      cart = [];
+      updateCartDisplay();
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      updateCartDisplay();
+      document.getElementById("clear-cart").addEventListener("click", clearCart);
+    });
+  </script>
+</body>
+</html>

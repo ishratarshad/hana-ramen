@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menu | Hana Ramen</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Poppins&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <a href="#main-content" class="skip-link">Skip to Main Content</a>
+
+  <header>
+    <div class="logo">🍜 Hana Ramen</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <!-- ✅ Cart with count and link to cart.html -->
+        <li>
+          <a href="cart.html" class="cart-link">🛒 Cart (<span id="cart-count">0</span>)</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <div class="menu-cart-wrapper">
+      <section class="menu">
+        <h1>Menu</h1>
+        <p>Explore our delicious offerings, from savory ramen to fresh sushi and delightful desserts.</p>
+
+      <!-- 🍜 Ramen -->
+      <h2>🍜 Ramen</h2>
+      <div class="menu-grid">
+        <div class="menu-card"><h3>Spicy Miso Ramen</h3><p>Rich miso broth, spicy pork chashu, soft egg, scallions.</p><span>$13.99</span><button class="add-to-cart" data-name="Spicy Miso Ramen" data-price="13.99">Add to Cart</button></div>
+        <div class="menu-card"><h3>Shoyu Ramen</h3><p>Soy-based broth, sliced chicken, bamboo shoots.</p><span>$12.49</span><button class="add-to-cart" data-name="Shoyu Ramen" data-price="12.49">Add to Cart</button></div>
+        <div class="menu-card"><h3>Tonkotsu Ramen</h3><p>Creamy pork bone broth, chashu, black garlic oil.</p><span>$14.99</span><button class="add-to-cart" data-name="Tonkotsu Ramen" data-price="14.99">Add to Cart</button></div>
+        <div class="menu-card"><h3>Vegetable Ramen</h3><p>Miso-based broth, tofu, mushrooms, corn, spinach.</p><span>$11.49</span><button class="add-to-cart" data-name="Vegetable Ramen" data-price="11.49">Add to Cart</button></div>
+        <div class="menu-card"><h3>Shio Ramen</h3><p>Light salt broth, naruto, bamboo, and greens.</p><span>$12.75</span><button class="add-to-cart" data-name="Shio Ramen" data-price="12.75">Add to Cart</button></div>
+        <div class="menu-card"><h3>Chicken Paitan Ramen</h3><p>Thick creamy chicken broth with grilled chicken.</p><span>$13.50</span><button class="add-to-cart" data-name="Chicken Paitan Ramen" data-price="13.50">Add to Cart</button></div>
+        <div class="menu-card"><h3>Seafood Ramen</h3><p>Shrimp, squid, mussels in a savory dashi broth.</p><span>$15.50</span><button class="add-to-cart" data-name="Seafood Ramen" data-price="15.50">Add to Cart</button></div>
+        <div class="menu-card"><h3>Cold Tsukemen</h3><p>Chilled dipping noodles with rich broth on the side.</p><span>$13.25</span><button class="add-to-cart" data-name="Cold Tsukemen" data-price="13.25">Add to Cart</button></div>
+      </div>
+
+      <!-- 🍣 Sushi -->
+      <h2>🍣 Sushi</h2>
+      <div class="menu-grid">
+        <div class="menu-card"><h3>Salmon Nigiri</h3><p>Fresh salmon over vinegared rice (2 pcs).</p><span>$6.99</span><button class="add-to-cart" data-name="Salmon Nigiri" data-price="6.99">Add to Cart</button></div>
+        <div class="menu-card"><h3>California Roll</h3><p>Crab, avocado, cucumber (6 pcs).</p><span>$7.49</span><button class="add-to-cart" data-name="California Roll" data-price="7.49">Add to Cart</button></div>
+        <div class="menu-card"><h3>Spicy Tuna Roll</h3><p>Tuna, spicy mayo, scallions, sesame (6 pcs).</p><span>$8.50</span><button class="add-to-cart" data-name="Spicy Tuna Roll" data-price="8.50">Add to Cart</button></div>
+        <div class="menu-card"><h3>Yellowtail Nigiri</h3><p>Hamachi over sushi rice (2 pcs).</p><span>$7.25</span><button class="add-to-cart" data-name="Yellowtail Nigiri" data-price="7.25">Add to Cart</button></div>
+        <div class="menu-card"><h3>Dragon Roll</h3><p>Eel, cucumber, avocado on top (8 pcs).</p><span>$10.99</span><button class="add-to-cart" data-name="Dragon Roll" data-price="10.99">Add to Cart</button></div>
+        <div class="menu-card"><h3>Philadelphia Roll</h3><p>Salmon, cream cheese, cucumber (6 pcs).</p><span>$8.75</span><button class="add-to-cart" data-name="Philadelphia Roll" data-price="8.75">Add to Cart</button></div>
+        <div class="menu-card"><h3>Shrimp Tempura Roll</h3><p>Fried shrimp, lettuce, spicy mayo (6 pcs).</p><span>$9.25</span><button class="add-to-cart" data-name="Shrimp Tempura Roll" data-price="9.25">Add to Cart</button></div>
+        <div class="menu-card"><h3>Avocado Roll</h3><p>Simple and fresh vegan roll (6 pcs).</p><span>$6.00</span><button class="add-to-cart" data-name="Avocado Roll" data-price="6.00">Add to Cart</button></div>
+      </div>
+
+      <!-- 🍡 Dessert -->
+      <h2>🍡 Dessert</h2>
+      <div class="menu-grid">
+        <div class="menu-card"><h3>Mochi Ice Cream</h3><p>Chewy rice cake with ice cream center (2 pcs).</p><span>$4.99</span><button class="add-to-cart" data-name="Mochi Ice Cream" data-price="4.99">Add to Cart</button></div>
+        <div class="menu-card"><h3>Matcha Cheesecake</h3><p>Green tea-flavored creamy cheesecake slice.</p><span>$5.99</span><button class="add-to-cart" data-name="Matcha Cheesecake" data-price="5.99">Add to Cart</button></div>
+        <div class="menu-card"><h3>Taiyaki</h3><p>Fish-shaped cake filled with red bean paste.</p><span>$3.99</span><button class="add-to-cart" data-name="Taiyaki" data-price="3.99">Add to Cart</button></div>
+        <div class="menu-card"><h3>Yuzu Sorbet</h3><p>Refreshing Japanese citrus ice dessert.</p><span>$4.50</span><button class="add-to-cart" data-name="Yuzu Sorbet" data-price="4.50">Add to Cart</button></div>
+        <div class="menu-card"><h3>Black Sesame Ice Cream</h3><p>Nutty, earthy flavor with a creamy texture.</p><span>$4.99</span><button class="add-to-cart" data-name="Black Sesame Ice Cream" data-price="4.99">Add to Cart</button></div>
+        <div class="menu-card"><h3>Tempura Banana</h3><p>Fried banana served with vanilla ice cream.</p><span>$6.25</span><button class="add-to-cart" data-name="Tempura Banana" data-price="6.25">Add to Cart</button></div>
+      </div>
+
+      <!-- 🍵 Drinks -->
+      <h2>🍵 Drinks</h2>
+      <div class="menu-grid">
+        <div class="menu-card"><h3>Jasmine Tea</h3><p>Fragrant green tea brewed hot or iced.</p><span>$2.50</span><button class="add-to-cart" data-name="Jasmine Tea" data-price="2.50">Add to Cart</button></div>
+        <div class="menu-card"><h3>Ramune Soda</h3><p>Classic Japanese marble soda (variety flavors).</p><span>$3.00</span><button class="add-to-cart" data-name="Ramune Soda" data-price="3.00">Add to Cart</button></div>
+        <div class="menu-card"><h3>Matcha Latte</h3><p>Whisked matcha with steamed oat or dairy milk.</p><span>$4.00</span><button class="add-to-cart" data-name="Matcha Latte" data-price="4.00">Add to Cart</button></div>
+        <div class="menu-card"><h3>Calpico</h3><p>Sweet, milky non-carbonated Japanese soft drink.</p><span>$3.25</span><button class="add-to-cart" data-name="Calpico" data-price="3.25">Add to Cart</button></div>
+        <div class="menu-card"><h3>Cold Brew Coffee</h3><p>Chilled coffee steeped overnight.</p><span>$3.50</span><button class="add-to-cart" data-name="Cold Brew Coffee" data-price="3.50">Add to Cart</button></div>
+        <div class="menu-card"><h3>Sparkling Yuzu Water</h3><p>Carbonated water infused with citrusy yuzu.</p><span>$2.99</span><button class="add-to-cart" data-name="Sparkling Yuzu Water" data-price="2.99">Add to Cart</button></div>
+      </div>
+
+      <!-- 🍱 Lunch Specials -->
+      <h2>🍱 Lunch Special <span class="note">(Weekdays 12:00 PM – 3:00 PM)</span></h2>
+      <div class="menu-grid">
+        <div class="menu-card"><h3>Mini Ramen & Roll Combo</h3><p>Half-size ramen and 4-piece California roll.</p><span>$10.99</span><button class="add-to-cart" data-name="Mini Ramen & Roll Combo" data-price="10.99">Add to Cart</button></div>
+        <div class="menu-card"><h3>Chicken Katsu Bento</h3><p>Served with rice, salad, and miso soup.</p><span>$11.99</span><button class="add-to-cart" data-name="Chicken Katsu Bento" data-price="11.99">Add to Cart</button></div>
+      </div>
+
+      <!-- 🍽️ Dinner Specials -->
+      <h2>🍽️ Dinner Special <span class="note">(Weekdays 7:00 PM – 10:00 PM)</span></h2>
+      <div class="menu-grid">
+        <div class="menu-card"><h3>Deluxe Ramen Set</h3><p>Full-size ramen, side of gyoza, and drink.</p><span>$16.99</span><button class="add-to-cart" data-name="Deluxe Ramen Set" data-price="16.99">Add to Cart</button></div>
+        <div class="menu-card"><h3>Sushi Dinner Platter</h3><p>12 assorted sushi pieces + miso soup.</p><span>$18.50</span><button class="add-to-cart" data-name="Sushi Dinner Platter" data-price="18.50">Add to Cart</button></div>
+      </div>
+
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="social-links">
+        <a href="https://www.instagram.com/" target="_blank" aria-label="Instagram">Instagram</a> |
+        <a href="https://www.facebook.com/" target="_blank" aria-label="Facebook">Facebook</a> |
+        <a href="https://twitter.com/" target="_blank" aria-label="Twitter">Twitter</a>
+      </div>
+      <div class="business-hours">
+        <p><strong>Business Hours:</strong></p>
+        <p>Mon–Fri: 12:00 PM – 10:00 PM</p>
+        <p>Sat–Sun: 1:00 PM – 11:00 PM</p>
+      </div>
+      <p>© 2025 Hana Ramen</p>
+    </div>
+  </footer>
+
+  <script src="js/cart.js"></script>
+</body>
+</html>
