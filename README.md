@@ -25,16 +25,6 @@ This project is a fully responsive and accessible restaurant website for a ficti
 - `contact.html` – Contact form and map
 - `gallery.html` – Visual showcase of dishes
 
-## Technologies Used
-
-- HTML5 & CSS3
-- JavaScript (vanilla)
-- Responsive design techniques (media queries, grid/flex)
-- LocalStorage API for cart persistence
-- Google Fonts: Poppins & Noto Sans JP
-- Netlify for deployment
-- GitHub for version control
-
 ## Live Site
 
-Visit the live site: [https://hana-ramen.netlify.app](https://hana-ramen.netlify.app)
+Visit the live site: https://thehanaramen.netlify.app/cart 
