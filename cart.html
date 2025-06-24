@@ -25,12 +25,20 @@
     </nav>
   </header>
 
-  <main id="main-content" class="cart-page">
-    <h1>Your Cart</h1>
-    <ul id="cart-items"></ul>
-    <p><strong>Total:</strong> $<span id="cart-total">0.00</span></p>
+<main id="main-content" class="cart-page">
+  <div class="top-menu-link">
+    <a href="menu.html" class="back-to-menu">← Back to Menu</a>
+  </div>
+
+  <h1>Your Cart</h1>
+
+  <ul id="cart-items"></ul>
+  <p><strong>Total:</strong> $<span id="cart-total">0.00</span></p>
+
+  <div class="cart-buttons">
     <button id="clear-cart">Clear Cart</button>
-  </main>
+  </div>
+</main>
 
   <footer>
     <div class="footer-content">
@@ -48,6 +56,9 @@
     </div>
   </footer>
 
+  <div id="cart-toast" class="cart-toast">✔ Cart updated!</div>
+  <div id="flying-item" class="flying-item"></div>
+
   <script>
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
@@ -56,12 +67,14 @@
       const cartTotalEl = document.getElementById("cart-total");
       const cartCountEl = document.getElementById("cart-count");
 
+      if (!cartItemsEl || !cartTotalEl) return;
+
+      cartItemsEl.innerHTML = "";
       let total = 0;
       let count = 0;
-      cartItemsEl.innerHTML = "";
 
       if (cart.length === 0) {
-        cartItemsEl.innerHTML = `<li>Your cart is empty.</li>`;
+        cartItemsEl.innerHTML = `<li style="color:#777;">Your cart is empty.</li>`;
       }
 
       cart.forEach((item, index) => {
@@ -70,15 +83,36 @@
 
         const li = document.createElement("li");
         li.innerHTML = `
-          <span>${item.name} x${item.quantity} — $${(item.price * item.quantity).toFixed(2)}</span>
+          <span>${item.name}</span>
+          <div class="quantity-controls">
+            <button onclick="changeQuantity(${index}, -1)">−</button>
+            <input type="number" min="1" value="${item.quantity}" onchange="setQuantity(${index}, this.value)">
+            <button onclick="changeQuantity(${index}, 1)">+</button>
+          </div>
+          <span class="item-total">$${(item.price * item.quantity).toFixed(2)}</span>
           <button onclick="removeFromCart(${index})">Remove</button>
         `;
         cartItemsEl.appendChild(li);
       });
 
       cartTotalEl.textContent = total.toFixed(2);
-      cartCountEl.textContent = count;
+      if (cartCountEl) cartCountEl.textContent = count;
+
       localStorage.setItem("cart", JSON.stringify(cart));
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      showToast("✔ Cart updated!");
+    }
+
+    function changeQuantity(index, delta) {
+      cart[index].quantity += delta;
+      if (cart[index].quantity <= 0) cart.splice(index, 1);
+      updateCartDisplay();
+    }
+
+    function setQuantity(index, value) {
+      const qty = parseInt(value);
+      cart[index].quantity = (!isNaN(qty) && qty > 0) ? qty : 1;
+      updateCartDisplay();
     }
 
     function removeFromCart(index) {
@@ -91,10 +125,93 @@
       updateCartDisplay();
     }
 
+    function showToast(message) {
+      const toast = document.getElementById("cart-toast");
+      if (toast) {
+        toast.textContent = message;
+        toast.classList.add("show");
+        setTimeout(() => toast.classList.remove("show"), 2000);
+      }
+    }
+
     document.addEventListener("DOMContentLoaded", () => {
       updateCartDisplay();
-      document.getElementById("clear-cart").addEventListener("click", clearCart);
+      const clearBtn = document.getElementById("clear-cart");
+      if (clearBtn) clearBtn.addEventListener("click", clearCart);
     });
   </script>
+
+  <style>
+    .cart-toast {
+      position: fixed;
+      top: 1.5rem;
+      right: 2rem;
+      background-color: #1a1a2e;
+      color: #fff;
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      font-weight: bold;
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-20px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .cart-toast.show {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .flying-item {
+      position: fixed;
+      width: 40px;
+      height: 40px;
+      background-color: #f8c6d0;
+      border-radius: 50%;
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.8s ease;
+    }
+
+    .flying-item.active {
+      opacity: 1;
+    }
+
+    .quantity-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 0.5rem 0;
+    }
+
+    .quantity-controls button {
+      background-color: #f8c6d0;
+      border: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .quantity-controls input {
+      width: 45px;
+      text-align: center;
+      font-size: 1rem;
+      padding: 0.3rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .item-total {
+      display: inline-block;
+      font-weight: bold;
+      min-width: 80px;
+      margin-left: 1rem;
+    }
+  </style>
 </body>
 </html>

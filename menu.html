@@ -20,7 +20,6 @@
         <li><a href="about.html">About</a></li>
         <li><a href="contact.html">Contact</a></li>
         <li><a href="gallery.html">Gallery</a></li>
-        <!-- Cart with count and link to cart.html -->
         <li>
           <a href="cart.html" class="cart-link">🛒 Cart (<span id="cart-count">0</span>)</a>
         </li>
@@ -116,6 +115,125 @@
     </div>
   </footer>
 
-  <script src="js/cart.js"></script>
+  <!-- Toast Notification -->
+  <div id="cart-toast" class="cart-toast">✔ Item added to cart!</div>
+
+  <!-- Flying animation element -->
+  <div id="flying-item" class="flying-item"></div>
+
+  <script>
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    function updateCartCount() {
+      const cartCountEl = document.getElementById("cart-count");
+      const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+      cartCountEl.textContent = totalCount;
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById("cart-toast");
+      toast.textContent = message;
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 2000);
+    }
+
+    function flyToCart(button) {
+      const flyingItem = document.getElementById("flying-item");
+      const rect = button.getBoundingClientRect();
+      flyingItem.style.left = `${rect.left + window.scrollX}px`;
+      flyingItem.style.top = `${rect.top + window.scrollY}px`;
+      flyingItem.classList.add("active");
+
+      setTimeout(() => {
+        flyingItem.style.left = `${window.innerWidth - 80}px`;
+        flyingItem.style.top = `30px`;
+        flyingItem.style.transform = "scale(0.4)";
+      }, 50);
+
+      setTimeout(() => {
+        flyingItem.classList.remove("active");
+        flyingItem.style.transform = "scale(1)";
+      }, 800);
+    }
+
+    function addToCart(name, price, button) {
+      const existing = cart.find(item => item.name === name);
+      if (existing) {
+        existing.quantity++;
+      } else {
+        cart.push({ name, price, quantity: 1 });
+      }
+
+      localStorage.setItem("cart", JSON.stringify(cart));
+      updateCartCount();
+      showToast("✔ Item added to cart!");
+      flyToCart(button);
+
+      // Scroll to top to reveal toast
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      updateCartCount();
+      document.querySelectorAll(".add-to-cart").forEach(button => {
+        button.addEventListener("click", () => {
+          const name = button.getAttribute("data-name");
+          const price = parseFloat(button.getAttribute("data-price"));
+          addToCart(name, price, button);
+        });
+      });
+    });
+  </script>
+
+  <style>
+    .cart-toast {
+      position: fixed;
+      top: 1.5rem;
+      right: 2rem;
+      background-color: #1a1a2e;
+      color: #fff;
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      font-weight: bold;
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-20px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .cart-toast.show {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .flying-item {
+      position: fixed;
+      width: 40px;
+      height: 40px;
+      background-color: #f8c6d0;
+      border-radius: 50%;
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.8s ease;
+    }
+
+    .flying-item.active {
+      opacity: 1;
+    }
+
+    @media (max-width: 768px) {
+      .cart-toast {
+        top: 1rem;
+        right: 1rem;
+        font-size: 0.9rem;
+        padding: 0.8rem 1rem;
+      }
+    }
+  </style>
+
 </body>
 </html>
