@@ -397,6 +397,56 @@ footer {
   background-color: #f48ba0;
 }
 
+/* Cart link styling */
+nav .mobile-cart {
+  margin-left: auto; /* Pushes it to the far right */
+  font-weight: bold;
+  text-decoration: none;
+  color: white;
+  background-color: #f8c6d0;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  display: inline-block;
+}
+
+/* Optional container to align nav content */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Mobile tweaks */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  nav ul {
+    display: none;
+    flex-direction: column;
+    background-color: #1a1a2e;
+    padding: 1rem;
+    border-radius: 8px;
+    width: 100%;
+  }
+
+  nav ul.show {
+    display: flex;
+  }
+
+  .mobile-cart {
+    margin-left: auto;
+    margin-right: 0;
+  }
+}
+
+
 /* ========== TOAST NOTIFICATION ========== */
 .cart-toast {
   position: fixed;
@@ -496,6 +546,30 @@ footer {
 
 .back-to-menu:hover {
   background-color: #333;
+}
+
+/* General cart link styling */
+.cart-link {
+  font-size: 0.7rem;         /* smaller text */
+  padding: 0.2rem 0.4rem;     /* tighter padding */
+  border-radius: 16px;
+  font-weight: 600;
+  color: white;
+  background-color: #f8c6d0;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.cart-link:hover {
+  background-color: #f48ba0;
+}
+
+/* Mobile-specific sizing */
+@media (max-width: 768px) {
+  .cart-link {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+  }
 }
 
 
