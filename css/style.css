@@ -539,3 +539,28 @@ footer {
     padding: 0.5rem 1rem;
   }
 }
+
+.hamburger {
+  display: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  nav ul {
+    display: none;
+    flex-direction: column;
+    background-color: #1a1a2e;
+    padding: 1rem;
+    border-radius: 8px;
+  }
+
+  nav ul.show {
+    display: flex;
+  }
+}
