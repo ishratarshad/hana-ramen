@@ -27,4 +27,4 @@ This project is a fully responsive and accessible restaurant website for a ficti
 
 ## Live Site
 
-Visit the live site: https://thehanaramen.netlify.app/cart 
+Visit the live site: https://thehanaramen.netlify.app 
