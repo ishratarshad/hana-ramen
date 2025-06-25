@@ -21,7 +21,6 @@ function showToast(message) {
   }
 }
 
-// UPDATED FUNCTION: supports fly animation
 function addToCart(name, price, sourceEl = null) {
   const existing = cart.find(item => item.name === name);
   if (existing) {
@@ -33,7 +32,6 @@ function addToCart(name, price, sourceEl = null) {
   updateCartDisplay();
   showToast("✔ Item added to cart!");
 
-  // FLY-TO-CART ANIMATION
   if (sourceEl) {
     const flyItem = document.getElementById("flying-item");
     const cartIcon = document.querySelector(".cart-link");
