@@ -100,7 +100,6 @@
       if (cartCountEl) cartCountEl.textContent = count;
 
       localStorage.setItem("cart", JSON.stringify(cart));
-      window.scrollTo({ top: 0, behavior: 'smooth' });
       showToast("✔ Cart updated!");
     }
 
